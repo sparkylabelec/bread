@@ -1,0 +1,5 @@
+{
+  "name": "InkFlow AI Writer",
+  "description": "A professional AI-powered writing assistant featuring multiple templates for blogs, emails, social media, and more. Built with Google Gemini.",
+  "requestFramePermissions": []
+}
