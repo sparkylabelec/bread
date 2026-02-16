@@ -1,18 +1,17 @@
 import { GoogleGenAI } from "@google/genai";
 import { GenerateContentParams } from "../types";
 
-const apiKey = process.env.API_KEY || '';
-
-// Initialize the client
-// Note: In a real app, you might want to handle the missing key more gracefully in the UI
-const ai = new GoogleGenAI({ apiKey });
+// Access the API key directly. 
+// Vite's `define` in vite.config.ts will replace `process.env.API_KEY` with the actual string value during build.
+// Fix: Use process.env.API_KEY directly in constructor as per coding guidelines (initialization section).
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const streamGeneratedContent = async (
   params: GenerateContentParams,
   onChunk: (text: string) => void
 ): Promise<string> => {
-  if (!apiKey) {
-    throw new Error("API Key is missing. Please check your environment configuration.");
+  if (!process.env.API_KEY) {
+    throw new Error("API Key is missing. Please check your .env file or Vercel project settings.");
   }
 
   const { template, formData, modelName } = params;
